@@ -1,0 +1,40 @@
+#!/bin/python3
+
+import os
+import sys
+from math import factorial
+
+# Complete the solve function below.
+def solve(n, m):
+    '''
+    n: number of 0's
+    m: number of 1's
+    '''
+    r = n
+    m = m - 1
+    n = r + m
+    mul = 1
+
+    for s in range(n-max(r, m)):
+        mul *= (n-s)
+        
+    return (mul//factorial(min(r, m))) % (int(1e9 + 7))
+    
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input())
+
+    for t_itr in range(t):
+        nm = input().split()
+
+        n = int(nm[0])
+
+        m = int(nm[1])
+
+        result = solve(n, m)
+
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
